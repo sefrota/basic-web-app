@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
     <context:component-scan base-package="tutorial.core.repositories.jpa"/>
-
+    <context:component-scan base-package="tutorial.core.services.impl"/>
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="username" value="sa"/>
         <property name="password" value="sa"/>
@@ -36,5 +36,5 @@
     </bean>
     <tx:annotation-driven/>
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
-    <context:component-scan base-package="tutorial.core.services.impl"/>
+
 </beans>

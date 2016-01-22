@@ -12,6 +12,7 @@ import tutorial.core.services.exceptions.AccountDoesNotExistException;
 import tutorial.core.services.exceptions.AccountExistsException;
 import tutorial.core.services.exceptions.BlogExistsException;
 import tutorial.core.services.util.AccountList;
+import tutorial.core.services.util.BlogList;
 
 import java.util.List;
 
@@ -60,6 +61,11 @@ public class AccountServiceImpl implements AccountService {
         createdBlog.setOwner(account);
 
         return createdBlog;
+    }
+
+    @Override
+    public BlogList findBlogsByAccount(Long accountId) {
+        return new BlogList(blogRepo.findBlogsByAccount(accountId));
     }
 
     @Override

@@ -5,11 +5,13 @@ import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import tutorial.core.entities.Account;
 import tutorial.core.entities.BlogEntry;
 import tutorial.rest.mvc.AccountController;
+import tutorial.rest.mvc.BlogController;
 import tutorial.rest.mvc.BlogEntryController;
 import tutorial.rest.resources.AccountResource;
 import tutorial.rest.resources.BlogEntryResource;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 /**
  * Created by sletras on 20/01/2016.
@@ -29,9 +31,8 @@ public class AccountResourceAsm extends ResourceAssemblerSupport<Account, Accoun
         AccountResource resource = new AccountResource();
         resource.setName(account.getName());
         resource.setPassword(account.getPassword());
-        Link self = linkTo(AccountController.class)
-                .slash(account.getId()).withSelfRel();
-        resource.add(self);
+        resource.add(linkTo(methodOn(AccountController.class).getAccount(account.getId())).withSelfRel());
+        resource.add(linkTo(methodOn(AccountController.class).findAllBlogs(account.getId())).withRel("blogs"));
         return resource;
     }
 }

@@ -1,9 +1,11 @@
 package tutorial.core.services;
 
+import org.springframework.stereotype.Service;
 import tutorial.core.entities.Account;
 import tutorial.core.entities.Blog;
 import tutorial.core.entities.BlogEntry;
 import tutorial.core.services.util.AccountList;
+import tutorial.core.services.util.BlogList;
 
 /**
  * Created by sletras on 20/01/2016.
@@ -16,6 +18,8 @@ public interface AccountService {
     public Account createAccount(Account data);
 
     public Blog createBlog(Long accountId, Blog data);
+
+    public BlogList findBlogsByAccount(Long accountId);
 
     public AccountList findAllAccounts();
 
