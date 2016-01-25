@@ -31,7 +31,7 @@ public class BlogEntryResource extends ResourceSupport {
     public BlogEntry toBlogEntry() {
         BlogEntry entry = new BlogEntry();
         entry.setTitle(title);
-        entry.setContent(entry.getContent());
+        entry.setContent(content);
         return entry;
     }
 }

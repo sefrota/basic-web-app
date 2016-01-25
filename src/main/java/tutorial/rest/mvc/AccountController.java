@@ -111,10 +111,13 @@ public class AccountController {
     public ResponseEntity<BlogResource> createBlog(@PathVariable Long accountId,
                                                         @RequestBody BlogResource blogResource) {
         try {
+            System.out.print("Estou aqui!");
             //Esta parte lida com a gravação do novo blog na BD.
             Blog createdBlog = accountService.createBlog(accountId, blogResource.toBlog());
+            System.out.print("Tou aqui");
             //Posteriormente vai ser gerado o objecto a passar para o exterior
             BlogResource createdBlogResource = new BlogResourceAsm().toResource(createdBlog);
+
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(createdBlogResource.getLink("self").getHref()));
             return new ResponseEntity<BlogResource>(createdBlogResource, headers, HttpStatus.CREATED);
@@ -126,7 +129,7 @@ public class AccountController {
     }
 
     @RequestMapping(value ="/{accountId}/blogs", method = RequestMethod.GET)
-    public ResponseEntity<BlogListResource> findAllBlogs(Long accountId){
+    public ResponseEntity<BlogListResource> findAllBlogs(@PathVariable Long accountId){
         try {
             BlogList blogs = accountService.findBlogsByAccount(accountId);
             BlogListResource blogsRes = new BlogListResourceAsm().toResource(blogs);

@@ -53,7 +53,7 @@ public class AccountServiceImpl implements AccountService {
         }
 
         Account account = accountRepo.findAccount(accountId);
-        if(account != null){
+        if(account == null){
             throw new AccountDoesNotExistException();
         }
 
